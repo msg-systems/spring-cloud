@@ -20,6 +20,8 @@
 
     <modules>
         <module>eureka-server</module>
+        <module>hystrix-dashboard</module>
+
         <module>appointment-service</module>
         <module>car-repair-service</module>
         <module>data-collection-service</module>
