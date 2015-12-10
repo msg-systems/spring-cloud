@@ -30,6 +30,7 @@ git config --global --get https.proxy
 ```
 
 ## Useful links: 
+* http://www.kennybastani.com/2015/07/spring-cloud-docker-microservices.html
 * http://de.slideshare.net/mstine/dist-sys-wspringclouddeckset
 * http://cloud.spring.io/spring-cloud-netflix/spring-cloud-netflix.html
 * https://github.com/Netflix/Hystrix/wiki/Configuration
