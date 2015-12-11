@@ -15,13 +15,11 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <spring.version>4.2.3.RELEASE</spring.version>
     </properties>
 
     <modules>
         <module>eureka-server</module>
         <module>hystrix-dashboard</module>
-
         <module>appointment-service</module>
         <module>car-repair-service</module>
         <module>data-collection-service</module>
