@@ -9,6 +9,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,9 +35,10 @@ public class DataCollectionApplication {
         // Emulates deterioration of a break pad over time.
         for (short i = 0; i <= 20; i++) {
             now = now.plusMonths(i);
+            long timestamp = now.toInstant(ZoneOffset.UTC).toEpochMilli();
             sensorValue--;
 
-            sensorDataSet.add(new CarSensorData(now, 1L, "brake_pad_front_left", String.valueOf(sensorValue)));
+            sensorDataSet.add(new CarSensorData(timestamp, 1L, "brake_pad_front_left", String.valueOf(sensorValue)));
         }
 
         repository.save(sensorDataSet);
