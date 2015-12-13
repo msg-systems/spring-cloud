@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
- * {@link CarMaintenanceEvent} is an entity for scheduling an car maintenance if reburied.
+ * {@link CarMaintenanceEvent} is an entity for scheduling an car maintenance if required.
  * Lombok project provides constructors and  various methods like {@link lombok.Getter} {@link lombok.Setter}
  * by using {@link Data} annotation.
  */
