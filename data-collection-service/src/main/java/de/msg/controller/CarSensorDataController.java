@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Set;
-
 /**
  * The {@link CarSensorDataController} is a {@link RestController} providing sensorData to other services, like maintenance-service.
  */
@@ -17,12 +15,12 @@ public class CarSensorDataController {
     private SimpleCarSensorDataRepository repository;
 
     /**
-     * Returns all {@link CarSensorData} as JSON encoded objects.
+     * Returns all {@link CarSensorData} as JSON encoded array.
      *
-     * @return All {@link CarSensorData} as JSON encoded objects.
+     * @return All {@link CarSensorData} as JSON encoded array.
      */
     @RequestMapping("/sensorData")
-    public Set<CarSensorData> sensorData() {
+    public CarSensorData[] sensorData() {
         return repository.findAll();
     }
 }

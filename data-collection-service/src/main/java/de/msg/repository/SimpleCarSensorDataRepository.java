@@ -27,9 +27,9 @@ public class SimpleCarSensorDataRepository {
     /**
      * Emulates a findAll operation on the {@link SimpleCarSensorDataRepository}.
      *
-     * @return A {@link Set} of all {@link CarSensorData} entities.
+     * @return A array of all {@link CarSensorData} entities.
      */
-    public Set<CarSensorData> findAll() {
-        return this.entities;
+    public CarSensorData[] findAll() {
+        return this.entities.toArray(new CarSensorData[entities.size()]);
     }
 }
