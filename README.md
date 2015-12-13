@@ -33,6 +33,7 @@ git config --global --get https.proxy
 
 ## Useful links: 
 * https://spring.io/blog/2015/07/14/microservices-with-spring
+* http://projects.spring.io/spring-cloud/spring-cloud.html
 * http://www.kennybastani.com/2015/07/spring-cloud-docker-microservices.html
 * http://de.slideshare.net/mstine/dist-sys-wspringclouddeckset
 * http://cloud.spring.io/spring-cloud-netflix/spring-cloud-netflix.html
