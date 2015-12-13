@@ -33,7 +33,7 @@ public class DataCollectionApplication {
         long sensorValue = 20;
 
         // Emulates deterioration of a break pad over time.
-        for (short i = 0; i <= 20; i++) {
+        for (short i = 0; i < 20; i++) {
             now = now.plusMonths(i);
             long timestamp = now.toInstant(ZoneOffset.UTC).toEpochMilli();
             sensorValue--;
