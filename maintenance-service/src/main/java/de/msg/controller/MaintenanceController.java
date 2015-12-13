@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * The {@link MaintenanceController} is a {@link RestController} evaluating if maintenance of a car is required.
+ * The {@link MaintenanceController} is a {@link RestController} evaluating maintenance of a car.
  * If maintenance is required an {@link de.msg.model.CarMaintenanceEvent} is generated and sent to car-repair-service.
  */
 @RestController
