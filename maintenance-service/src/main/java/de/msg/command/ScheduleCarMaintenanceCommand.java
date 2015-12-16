@@ -11,9 +11,9 @@ import org.springframework.web.client.RestTemplate;
  * This {@link HystrixCommand} schedules a {@link CarMaintenanceEvent} at car-repair-service. In more sophisticated scenarios you would use
  * a messaging middleware like ActiveMQ, RabbitMQ or Apache Kafka. Transferring the whole {@link CarSensorData} is not wise due
  * performance issues.
- * See <a href="http://activemq.apache.org/" />
- * See <a href="https://www.rabbitmq.com/" />
- * See <a href="http://kafka.apache.org/" />
+ * See <a href="http://activemq.apache.org/">http://activemq.apache.org</a>
+ * See <a href="https://www.rabbitmq.com/">https://www.rabbitmq.com/</a>
+ * See <a href="http://kafka.apache.org/">http://kafka.apache.org/</a>
  */
 @Component
 public class ScheduleCarMaintenanceCommand {

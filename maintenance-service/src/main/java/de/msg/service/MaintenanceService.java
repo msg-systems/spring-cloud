@@ -17,7 +17,7 @@ import java.util.Arrays;
  * car maintenance is required. If sensor data indicates an needed maintenance an {@link CarMaintenanceEvent} is scheduled
  * via {@link ScheduleCarMaintenanceCommand}.
  * In more sophisticated scenarios you would use a configurable business rule engine, like Drools.
- * See <a href="http://www.drools.org/" />
+ * See <a href="http://www.drools.org/">http://www.drools.org</a>
  */
 @Service
 public class MaintenanceService {

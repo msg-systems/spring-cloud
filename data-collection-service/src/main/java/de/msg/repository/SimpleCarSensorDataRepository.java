@@ -9,7 +9,7 @@ import java.util.Set;
 
 /**
  * Used to emulate persistence by a simple in memory repository. In more sophisticated scenarios you would use a NoSQL database like Apache Cassandra.
- * See <a href="http://cassandra.apache.org/" />
+ * See <a href="http://cassandra.apache.org/">http://cassandra.apache.org</a>
  */
 @Component
 public class SimpleCarSensorDataRepository {
