@@ -77,6 +77,51 @@ git clone https://github.com/Pirat83/spring-cloud.git
 ```
 ## Getting started
 Use the location where you cloned the repository i.e. {user.home}/workspace/spring-cloud to execute the following commands. 
+Important endpoint URLs: 
+data-collection-service: [http://localhost:8000/sensorData](http://localhost:8000/sensorData)
+### Build all modules
+```bash
+mvn clean install
+```
+### Start Eureka-Server 
+```bash
+java -jar eureka-server/target/eureka-server-0.0.1-SNAPSHOT.jar
+```
+to verify if your eureka-server has started correctly on port 8761 open with your browser [The Eureka Dashboard](http://localhost:8761/). 
+### Start data-collection-service
+```bash
+java -jar data-collection-service/target/data-collection-service-0.0.1-SNAPSHOT.jar --server.port=8000
+```
+verify [The SensorData endpoint: http://localhost:8000/sensorData](http://localhost:8000/sensorData). You should see some JSON objects. 
+### Start maintenance-service
+```bash
+java -jar maintenance-service/target/maintenance-service-0.0.1-SNAPSHOT.jar --server.port=8010
+```
+verify [The maintenance endpoint: http://localhost:8010/](http://localhost:8010/). You should see an error message, due no instance of car-repair-service is found yet.   
+### Start car-repair-service
+```bash
+java -jar car-repair-service/target/car-repair-service-0.0.1-SNAPSHOT.jar --server.port=8020
+```
+verify [The car-repair endpoint: http://localhost:8020/](http://localhost:8020/). You should see an error message, due no instance of master-data-service is found yet.   
+### Start master-data-service
+```bash
+java -jar master-data-service/target/master-data-service-0.0.1-SNAPSHOT.jar --server.port=8030
+```
+verify [The master-data endpoint: http://localhost:8030/car](http://localhost:8030/car). You should see an customer JSON object.     
+### Start appointment-service
+```bash
+java -jar appointment-service/target/appointment-service-0.0.1-SNAPSHOT.jar --server.port=8040
+```
+verify [The customer appointment endpoint: http://localhost:8040/customer](http://localhost:8040/customer). You should see an long value.     
+verify [The service-centerappointment endpoint: http://localhost:8040/service-center](http://localhost:8040/service-center). You should see an long value.
+
+### Putting everything together
+Now you got everything running. Verify that all 5 running spring-cloud are running. [Eureka application inventory](http://localhost:8761/eureka/apps/) 
+
+So lets schedule an maintenance. Navigate to: [The maintenance endpoint: http://localhost:8010/](http://localhost:8010/) 
+You see an Error, due a bug. There is a missing ribbon dependency. This will be fixed soon. The maintenance-service should post a CarMaintenanceEvent to the car-repair-service. 
+Let's emulate this by navigating to [The car-repair endpoint: http://localhost:8020/](http://localhost:8020/). You see the CarMaintenanceEvent. 
+Use the location where you cloned the repository i.e. {user.home}/workspace/spring-cloud to execute the following commands. 
 
 ###Important endpoint URLs: 
 | Endpoint / Service      | URL                                                                          | Port range |
