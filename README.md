@@ -77,9 +77,11 @@ git clone https://github.com/Pirat83/spring-cloud.git
 ## Getting started
 
 ## Useful links: 
-* https://spring.io/blog/2015/07/14/microservices-with-spring
-* http://projects.spring.io/spring-cloud/spring-cloud.html
-* http://www.kennybastani.com/2015/07/spring-cloud-docker-microservices.html
-* http://de.slideshare.net/mstine/dist-sys-wspringclouddeckset
-* http://cloud.spring.io/spring-cloud-netflix/spring-cloud-netflix.html
-* https://github.com/Netflix/Hystrix/wiki/Configuration
+* [How to set up environment variables in Linux, Unix, Mac and Windows environments](http://www.tutorialspoint.com/maven/maven_environment_setup.htm)
+* [How to set up a Maven HTTP / HTTPS proxy] (https://maven.apache.org/guides/mini/guide-proxies.html) 
+* [Spring engineering blog about microservices] (https://spring.io/blog/2015/07/14/microservices-with-spring)
+* [Overview of cloud native applications with spring-cloud] (http://projects.spring.io/spring-cloud/spring-cloud.html)
+* [Very interesting overview of spring-cloud components by Kenny Bastani] http://www.kennybastani.com/2015/07/spring-cloud-docker-microservices.html
+* [Simple overview of spring-cloud components] (http://de.slideshare.net/mstine/dist-sys-wspringclouddeckset)
+* [Overview of spring-cloud-netflix components](http://cloud.spring.io/spring-cloud-netflix/spring-cloud-netflix.html)
+* (Configuration of Hystrix) [https://github.com/Netflix/Hystrix/wiki/Configuration]
