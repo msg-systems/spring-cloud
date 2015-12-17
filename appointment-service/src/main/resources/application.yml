@@ -1,3 +1,7 @@
+server:
+  port: 8084
+
+
 eureka:
   instance:
     instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
