@@ -23,9 +23,9 @@ public class CarRepairController {
     private CarRepairService service;
 
     /**
-     * Emulates scheduling a {@link CarMaintenanceEvent}.
+     * Emulates scheduling a {@link CarMaintenance}.
      *
-     * @return The scheduled {@link CarMaintenanceEvent}.
+     * @return The scheduled {@link CarMaintenance}.
      */
     @RequestMapping
     public CarMaintenance home() {
@@ -36,9 +36,9 @@ public class CarRepairController {
     }
 
     /**
-     * Schedules a {@link CarMaintenanceEvent}.
+     * Schedules a {@link CarMaintenance}.
      *
-     * @return The scheduled {@link CarMaintenanceEvent}.
+     * @return The scheduled {@link CarMaintenance}.
      */
     //TODO MS communication with car-repair-service throws java.lang.RuntimeException: Not implemented due required Ribbon dependency.
     @RequestMapping(method = RequestMethod.POST)
