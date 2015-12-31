@@ -26,10 +26,10 @@ public class CarRepairService {
     private ScheduleAppointmentCommand scheduleAppointmentCommand;
 
     /**
-     * Schedules a {@link CarMaintenanceEvent}.
+     * Schedules a {@link CarMaintenance}.
      *
-     * @param event The {@link CarMaintenanceEvent} to schedule
-     * @return The scheduled {@link CarMaintenanceEvent}
+     * @param event The {@link CarMaintenance} to schedule
+     * @return The scheduled {@link CarMaintenance}
      */
     public CarMaintenance scheduleCarMaintenance(CarMaintenance event) {
         Customer customer = getCustomerMasterDataCommand.getCustomer(event.getCar());
