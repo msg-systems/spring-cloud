@@ -22,16 +22,17 @@ import java.util.Arrays;
  */
 @Service
 public class MaintenanceService {
-    
+
 
     /**
      * Fetches all {@link CarSensor} end evaluates if car maintenance is required.
      * If car maintenance is required a {@link CarMaintenance} is created.
      *
+     * @param carSensor An {@link CarSensor[]} with sensor data to evaluate.
      * @return All {@link CarSensor} instances that are the primary cause of the scheduled car maintenance.
      */
     public CarSensor[] evaluateMaintenance(CarSensor[] carSensor) {
-       
+
         // Sort CarSensorData by timestamp
         Arrays.sort(carSensor, (o1, o2) -> {
             LocalDateTime d1 = LocalDateTime.ofInstant(Instant.ofEpochMilli(o1.getTimestamp()), ZoneOffset.UTC);
@@ -45,7 +46,7 @@ public class MaintenanceService {
                 .filter(carSensorData -> carSensorData.getSensorName().equals("brake_pad_front_left"))
                 .filter(carSensorData -> Long.valueOf(carSensorData.getSensorValue()) < 4L)
                 .toArray(CarSensor[]::new);
-        
+
         return result;
     }
 }
