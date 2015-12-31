@@ -6,7 +6,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 /**
  * A simple {@link SpringBootApplication} bootstraps Spring's {@link org.springframework.context.ApplicationContext}.
- * The {@link MasterDataApplication} provides master-data for i.e {@link de.msg.domain.Customer}.
+ * The {@link MasterDataApplication} provides master-data for i.e {@link de.msg.domain.customer.Customer}.
  */
 
 public class MasterDataApplication {
