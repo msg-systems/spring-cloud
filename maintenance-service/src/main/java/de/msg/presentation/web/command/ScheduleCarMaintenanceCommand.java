@@ -26,7 +26,7 @@ public class ScheduleCarMaintenanceCommand {
     /**
      * Schedules the {@link CarMaintenance} event at car-repair-service.
      *
-     * @param event The {@link CarMaintenance} to schedule.
+     * @param carMaintenance The {@link CarMaintenance} to schedule.
      * @return The scheduled {@link CarMaintenance}.
      */
     @HystrixCommand
