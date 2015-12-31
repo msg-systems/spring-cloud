@@ -11,8 +11,6 @@ import de.msg.domain.carmaintenance.CarMaintenance;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
-import javax.ws.rs.POST;
-
 /**
  * The {@link AppointmentServiceController} schedules an appointment in one month from now.
  */
