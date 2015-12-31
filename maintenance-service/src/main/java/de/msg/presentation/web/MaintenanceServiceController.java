@@ -12,7 +12,7 @@ import de.msg.presentation.web.command.ScheduleCarMaintenanceCommand;
 
 /**
  * The {@link MaintenanceServiceController} is a {@link RestController} evaluating maintenance of a car.
- * If maintenance is required an {@link de.msg.domain.carmaintenance.CarMaintenanceEvent} is generated and sent to car-repair-service.
+ * If maintenance is required an {@link CarSensor} is generated and sent to car-repair-service.
  */
 @RestController
 public class MaintenanceServiceController {
