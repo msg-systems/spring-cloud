@@ -8,7 +8,7 @@ import de.msg.domain.customer.Customer;
 
 
 /**
- * The {@link CustomerController} provides master-data records for {@link de.msg.domain.Customer} entities.
+ * The {@link CustomerController} provides master-data records for {@link de.msg.domain.customer.Customer} entities.
  */
 @RestController
 public class CustomerController {
