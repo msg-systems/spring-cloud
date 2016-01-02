@@ -9,7 +9,8 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  * The {@link CarRepairApplication} fetches appointment proposals from appointment-service and tries to schedule
  * an appointment for an {@link de.msg.domain.customer.Customer} in an {@link de.msg.domain.servicecenter.ServiceCenter} for car maintenance.
  */
-
+@SpringBootApplication
+@EnableEurekaClient
 public class CarRepairApplication {
 
     /**
@@ -18,6 +19,6 @@ public class CarRepairApplication {
      * @param args The command line arguments.
      */
     public static void main(String[] args) {
-        new SpringApplicationBuilder(CarRepairConfiguration.class).web(true).run(args);
+        new SpringApplicationBuilder(CarRepairApplication.class).web(true).run(args);
     }
 }

@@ -2,6 +2,7 @@ package de.msg;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 /**
  * A simple {@link SpringBootApplication} bootstraps Spring's
@@ -10,6 +11,8 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
  * 
  * @author Rafael Kansy, Micahel Schäfer 
  */
+@SpringBootApplication
+@EnableEurekaClient
 public class DataCollectionApplication {
 
 	/**
@@ -19,6 +22,6 @@ public class DataCollectionApplication {
 	 *            The command line arguments.
 	 */
 	public static void main(String[] args) {
-		new SpringApplicationBuilder(DataCollectionConfiguration.class).web(true).run(args);
+		new SpringApplicationBuilder(DataCollectionApplication.class).web(true).run(args);
 	}
 }
