@@ -6,8 +6,11 @@ import de.msg.domain.carmaintenance.CarMaintenance;
 import de.msg.domain.carsensor.CarSensor;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Collections;
 
 /**
  * This {@link HystrixCommand} schedules a {@link CarMaintenance} at car-repair-service. In more sophisticated scenarios you would use
@@ -21,6 +24,7 @@ import org.springframework.web.client.RestTemplate;
 public class ScheduleCarMaintenanceCommand {
     @SuppressWarnings("SpringJavaAutowiringInspection")
     @Autowired
+    @LoadBalanced
     private RestTemplate restTemplate;
 
     /**
@@ -31,6 +35,6 @@ public class ScheduleCarMaintenanceCommand {
      */
     @HystrixCommand
     public CarMaintenance scheduleCarMaintenanceCommand(CarMaintenance carMaintenance) {
-        return restTemplate.postForObject("http://appointment-service/scheduleCarMaintenance/", carMaintenance, CarMaintenance.class);
+        return restTemplate.postForObject("http://appointment-service/scheduleCarMaintenance/", carMaintenance, CarMaintenance.class, Collections.emptyMap());
     }
 }
