@@ -203,4 +203,5 @@ Let's emulate this by navigating to [The car-repair endpoint: http://localhost:8
 * [Very interesting overview of spring-cloud components by Kenny Bastani] http://www.kennybastani.com/2015/07/spring-cloud-docker-microservices.html
 * [Simple overview of spring-cloud components] (http://de.slideshare.net/mstine/dist-sys-wspringclouddeckset)
 * [Overview of spring-cloud-netflix components](http://cloud.spring.io/spring-cloud-netflix/spring-cloud-netflix.html)
+* [http://callistaenterprise.se/blogg/teknik/2015/05/20/blog-series-building-microservices/] (Magnus Larson's Blog Series - Building Microservices)
 * (Configuration of Hystrix) [https://github.com/Netflix/Hystrix/wiki/Configuration]
