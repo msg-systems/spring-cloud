@@ -1,9 +1,6 @@
 server:
   port: 8761
 eureka:
-  instance:
-    instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
-    hostname: localhost
   client:
     registerWithEureka: false
     fetchRegistry: false
