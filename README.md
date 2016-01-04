@@ -189,7 +189,7 @@ verify [The customer appointment endpoint: http://localhost:8040/customer](http:
 verify [The service-centerappointment endpoint: http://localhost:8040/service-center](http://localhost:8040/service-center). You should see an long value.
 
 ### Putting everything together
-Now you got everything running. Verify that all 5 running spring-cloud are running. [Eureka application inventory](http://localhost:8761/eureka/apps/) 
+Now you got everything running. Verify that all 5 services are running. [Eureka application inventory](http://localhost:8761/eureka/apps/) 
 
 So lets schedule an maintenance. Navigate to: [The maintenance endpoint: http://localhost:8010/](http://localhost:8010/) 
 You see an Error, due a bug. There is a missing ribbon dependency. This will be fixed soon. The maintenance-service should post a CarMaintenanceEvent to the car-repair-service. 
