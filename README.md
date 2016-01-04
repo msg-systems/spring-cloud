@@ -188,6 +188,12 @@ java -jar appointment-service/target/appointment-service-0.0.1-SNAPSHOT.jar --se
 verify [The customer appointment endpoint: http://localhost:8040/customer](http://localhost:8040/customer). You should see an long value.     
 verify [The service-centerappointment endpoint: http://localhost:8040/service-center](http://localhost:8040/service-center). You should see an long value.
 
+### Start Zuul-Proxy
+```bash
+java -jar zuul-proxy/target/zuul-proxy-0.0.1-SNAPSHOT.jar
+```
+to verify if your zuul-proxy has started correctly on port 8080 access one service via the API endpoint [http://localhost:8080/api/sensor](http://localhost:8080/api/sensor). 
+
 ### Putting everything together
 Now you got everything running. Verify that all 5 services are running. [Eureka application inventory](http://localhost:8761/eureka/apps/) 
 

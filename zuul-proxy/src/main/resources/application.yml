@@ -1,0 +1,27 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    metadataMap:
+      instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+zuul:
+  ignoredServices: "*"
+  prefix: /api
+  routes:
+    sensor :
+      path: /sensor/**
+      serviceId: data-collection-service
+    maintenance:
+      path: /maintenance/**
+      serviceId: maintenance-service
+    customer:
+      path: /customer/**
+      serviceId: master-data-service
+    car:
+      path: /car/**
+      serviceId: car-repair-service
+    appointment:
+      path: /appointment/**
+      serviceId: appointment-service

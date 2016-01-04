@@ -19,6 +19,7 @@
 
     <modules>
         <module>eureka-server</module>
+        <module>zuul-proxy</module>
         <module>hystrix-dashboard</module>
         <module>appointment-service</module>
         <module>car-repair-service</module>
