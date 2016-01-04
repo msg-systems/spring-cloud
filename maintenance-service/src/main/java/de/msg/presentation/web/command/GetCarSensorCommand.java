@@ -29,7 +29,7 @@ public class GetCarSensorCommand {
      * @return All {@link CarSensor} encoded as JSON array.
      */
     @HystrixCommand
-    public CarSensor[] getCarSenor() {
+    public CarSensor[] getCarSensor() {
         return restTemplate.getForObject("http://data-collection-service/", CarSensor[].class);
     }
 }

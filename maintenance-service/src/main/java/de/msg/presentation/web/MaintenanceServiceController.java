@@ -37,7 +37,7 @@ public class MaintenanceServiceController {
     public CarSensor[] home() {
     	
     	 // Fetch all CarSensor instances 
-    	CarSensor[] carSensor = getCarSensorCommand.getCarSenor();
+    	CarSensor[] carSensor = getCarSensorCommand.getCarSensor();
     
     	// Calculate the maintenance depends on maintenance rules 
     	CarSensor[] result = service.evaluateMaintenance(carSensor);
