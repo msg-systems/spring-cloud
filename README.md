@@ -81,7 +81,7 @@ git clone https://github.com/Pirat83/spring-cloud.git
 ## Getting started
 Use the location where you cloned the repository i.e. {user.home}/workspace/spring-cloud to execute the following commands. 
 Important endpoint URLs: 
-data-collection-service: [http://localhost:8000/sensorData](http://localhost:8000/sensorData)
+data-collection-service: [http://localhost:8000/sensorValues](http://localhost:8000/sensorValues)
 ### Build all modules
 ```bash
 mvn clean install
