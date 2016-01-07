@@ -95,7 +95,7 @@ to verify if your eureka-server has started correctly on port 8761 open with you
 ```bash
 java -jar data-collection-service/target/data-collection-service-0.0.1-SNAPSHOT.jar --server.port=8000
 ```
-verify [The SensorData endpoint: http://localhost:8000/sensorData](http://localhost:8000/sensorData). You should see some JSON objects. 
+verify [The SensorData endpoint: http://localhost:8000/sensorValues](http://localhost:8000/sensorValues). You should see some JSON objects. 
 ### Start maintenance-service
 ```bash
 java -jar maintenance-service/target/maintenance-service-0.0.1-SNAPSHOT.jar --server.port=8010
