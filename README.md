@@ -56,6 +56,9 @@ Put into your ${user.home}/.m2/settings.xml the correct configuration
 * change proxy.example.com to the URL of your proxy server
 * change 8080 to the proxy port configured on your proxy server
 
+### Set up MongoDB 
+* See [MongoDB documentation] (https://docs.mongodb.org/manual/installation/)
+
 ### Set up your favorite IDE
 * [IntelliJ IDEA] (https://www.jetbrains.com/idea/)
 * [NetBeans IDE] (https://netbeans.org/)
