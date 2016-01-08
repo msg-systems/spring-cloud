@@ -2,7 +2,6 @@ package de.msg.repository;
 
 import de.msg.model.SensorEvent;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
