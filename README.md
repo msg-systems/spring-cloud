@@ -101,7 +101,9 @@ verify [The SensorEvent endpoint: http://localhost:8000/sensorEvents](http://loc
 ```bash
 java -jar maintenance-service/target/maintenance-service-0.0.1-SNAPSHOT.jar --server.port=8010
 ```
-verify [The maintenance endpoint: http://localhost:8010/](http://localhost:8010/). You should see an error message, due no instance of car-repair-service is found yet.   
+verify [The SensorEvent endpoint: http://localhost:8010/sensorEvents](http://localhost:8010/sensorEvents). You should see some JSON objects. 
+verify [The maintenance endpoint: http://localhost:8010/maintenanceEvents](http://localhost:8010/maintenanceEvents). You should see an error message, due no instance of car-repair-service is found yet.   
+
 ### Start car-repair-service
 ```bash
 java -jar car-repair-service/target/car-repair-service-0.0.1-SNAPSHOT.jar --server.port=8020

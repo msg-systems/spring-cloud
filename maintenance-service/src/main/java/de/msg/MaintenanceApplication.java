@@ -1,18 +1,20 @@
 package de.msg;
 
+import de.msg.model.MaintenanceEvent;
+import de.msg.model.SensorEvent;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.cloud.netflix.hystrix.EnableHystrix;
+import org.springframework.cloud.netflix.feign.EnableFeignClients;
 
 /**
  * A simple {@link SpringBootApplication} bootstraps Spring's {@link org.springframework.context.ApplicationContext}.
- * The {@link MaintenanceApplication} fetches sensor data from data-collection-service and evaluates if car maintenance
- * is required an {@link de.msg.domain.carmaintenance.CarMaintenance} is generated and pushed to car-repair-service.
+ * The {@link MaintenanceApplication} evaluates if car maintenance is required. If maintenance is required {@link SensorEvent}
+ * data is fetched from data-collection-service and a {@link MaintenanceEvent} is generated and posted to car-repair-service.
  */
 @SpringBootApplication
 @EnableEurekaClient
-@EnableHystrix
+@EnableFeignClients
 public class MaintenanceApplication {
 
     /**
