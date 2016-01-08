@@ -7,8 +7,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -31,24 +29,6 @@ public class MaintenanceEvent {
     @NotNull
     private String sensorValueThreshold;
     private Set<SensorEvent> sensorEvents = new HashSet<>();
-
-    /**
-     * Factory method responsible to build an {@link MaintenanceEvent} from an {@link SensorEvent}.
-     *
-     * @param sensorEvent The {@link SensorEvent} to build the {@link MaintenanceEvent} from
-     * @return The build {@link MaintenanceEvent}
-     */
-    public static MaintenanceEvent build(SensorEvent sensorEvent) {
-        MaintenanceEvent result = new MaintenanceEvent();
-
-        LocalDateTime now = LocalDateTime.now();
-        result.timestamp = now.toInstant(ZoneOffset.UTC).toEpochMilli();
-
-        result.car = sensorEvent.getCar();
-        result.sensorName = sensorEvent.getSensorName();
-        result.sensorValueThreshold = sensorEvent.getSensorValue();
-        return result;
-    }
 
     /**
      * Custom constructor of {@link MaintenanceEvent}.
