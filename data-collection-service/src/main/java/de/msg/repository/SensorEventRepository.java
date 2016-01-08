@@ -21,7 +21,4 @@ public interface SensorEventRepository extends MongoRepository<SensorEvent, Stri
      * @return The {@link SensorEvent}
      */
     SensorEvent findByCarAndSensorNameAndSensorValue(long car, String sensorName, String sensorValue);
-
-    @Query("select coalesce(max(c.car), '0') from Car c")
-    long getMaxCar();
 }
