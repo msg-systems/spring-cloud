@@ -9,13 +9,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.validation.constraints.NotNull;
 
 /**
- * {@link SensorValue} domain entity.
+ * {@link SensorEvent} domain entity.
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Document
-public class SensorValue {
+public class SensorEvent {
     @Id
     private String id;
     @NotNull
@@ -28,14 +28,14 @@ public class SensorValue {
     private String sensorValue;
 
     /**
-     * Custom constructor of {@link SensorValue}.
+     * Custom constructor of {@link SensorEvent}.
      *
      * @param timestamp   The timestamp as UTC long value
      * @param car         The id of the car
      * @param sensorName  The name of the sensor
      * @param sensorValue The value of the sensor
      */
-    public SensorValue(long timestamp, long car, String sensorName, String sensorValue) {
+    public SensorEvent(long timestamp, long car, String sensorName, String sensorValue) {
         this.timestamp = timestamp;
         this.car = car;
         this.sensorName = sensorName;

@@ -8,41 +8,34 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import de.msg.model.SensorValue;
-
-import javax.annotation.PostConstruct;
+import de.msg.model.SensorEvent;
 
 /**
- * Initializes sample {@link SensorValue} data.
- *
- * @author Rafael Kansy
+ * Initializes sample {@link SensorEvent} data.
  */
 @Component
-public class SensorValueInitializer {
+public class SensorEventInitializer {
 
     @Autowired
     @SuppressWarnings("SpringJavaAutowiringInspection")
-    private SensorValueRepository repository;
+    private SensorEventRepository repository;
 
-    /**
-     * Generates some test data.
-     */
-    @PostConstruct
-    private void generateTestData() {
-        Set<SensorValue> sensorDataSet = new HashSet<>();
+    public Set<SensorEvent> generateTestData(long car) {
+        Set<SensorEvent> sensorDataSet = new HashSet<>();
         LocalDateTime now = LocalDateTime.now();
 
         // Emulates deterioration of a break pad over time.
         for (short i = 20; i >= 3; i--) {
-            SensorValue sensorData = repository.findByCarAndSensorNameAndSensorValue(1L, "brake_pad_front_left", String.valueOf(i));
+            SensorEvent sensorData = repository.findByCarAndSensorNameAndSensorValue(car, "brake_pad_front_left", String.valueOf(i));
             if (sensorData == null) {
                 now = now.plusMonths(i);
                 long timestamp = now.toInstant(ZoneOffset.UTC).toEpochMilli();
-                sensorDataSet.add(new SensorValue(timestamp, 1L, "brake_pad_front_left", String.valueOf(i)));
+                sensorDataSet.add(new SensorEvent(timestamp, car, "brake_pad_front_left", String.valueOf(i)));
             } else {
                 sensorDataSet.add(sensorData);
             }
         }
         repository.save(sensorDataSet);
+        return sensorDataSet;
     }
 }
