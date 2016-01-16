@@ -26,19 +26,4 @@ public class SensorEvent {
     private String sensorName;
     @NotNull
     private String sensorValue;
-
-    /**
-     * Custom constructor of {@link SensorEvent}.
-     *
-     * @param timestamp   The timestamp as UTC long value
-     * @param car         The id of the car
-     * @param sensorName  The name of the sensor
-     * @param sensorValue The value of the sensor
-     */
-    public SensorEvent(long timestamp, long car, String sensorName, String sensorValue) {
-        this.timestamp = timestamp;
-        this.car = car;
-        this.sensorName = sensorName;
-        this.sensorValue = sensorValue;
-    }
 }
