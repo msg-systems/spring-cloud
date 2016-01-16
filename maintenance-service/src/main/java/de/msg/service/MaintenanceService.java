@@ -43,7 +43,7 @@ public class MaintenanceService {
      * @param maintenanceEvent The {@link MaintenanceEvent} to schedule.
      */
     public void scheduleMaintenanceEvent(MaintenanceEvent maintenanceEvent) {
-        repository.insert(maintenanceEvent);
+        repository.save(maintenanceEvent);
         client.scheduleMaintenanceEvent(maintenanceEvent);
     }
 }
