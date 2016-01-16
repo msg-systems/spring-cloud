@@ -1,10 +1,16 @@
-package de.msg.domain.service;
+package de.msg.service;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
+import de.msg.model.MaintenanceEvent;
+import de.msg.model.SensorEvent;
+import de.msg.repository.MaintenanceEventRepository;
+import de.msg.web.DataCollectionServiceClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.PagedResources;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RestController;
 
 import de.msg.domain.carmaintanance.CarMaintenance;
 import de.msg.domain.customer.Customer;
@@ -14,7 +20,7 @@ import de.msg.presentation.web.command.GetCustomerMasterDataCommand;
 import de.msg.presentation.web.command.ScheduleAppointmentCommand;
 
 /**
- * The {@link CarRepairService} is a {@link RestController} responsible for scheduling car maintenance.
+ * The {@link CarRepairService} is a {@link Service} responsible for scheduling car maintenance.
  */
 @Service
 public class CarRepairService {
@@ -24,6 +30,34 @@ public class CarRepairService {
     private GetAppointmentProposalsCommand getAppointmentProposalsCommand;
     @Autowired
     private ScheduleAppointmentCommand scheduleAppointmentCommand;
+    @SuppressWarnings("SpringJavaAutowiringInspection")
+    @Autowired
+    private DataCollectionServiceClient client;
+    @SuppressWarnings("SpringJavaAutowiringInspection")
+    @Autowired
+    private MaintenanceEventRepository repository;
+
+    /**
+     * Schedules a {@link MaintenanceEvent}.
+     *
+     * @param event The {@link MaintenanceEvent} to schedule
+     * @return The scheduled {@link MaintenanceEvent}
+     */
+    public MaintenanceEvent scheduleMaintenance(MaintenanceEvent event) {
+        Set<PagedResources<SensorEvent>> pagedResources = client.findByCar(event.getCar());
+        Set<SensorEvent> events = new HashSet<>();
+        for (PagedResources<SensorEvent> page : pagedResources) {
+            events.addAll(page.getContent());
+        }
+        event.setSensorEvents(events);
+        repository.save(event);
+
+        // Get master-data
+        // Get appointment proposals
+        // Schedule service center appointment
+        // Schedule customer appointment
+        return event;
+    }
 
     /**
      * Schedules a {@link CarMaintenance}.
@@ -31,6 +65,7 @@ public class CarRepairService {
      * @param event The {@link CarMaintenance} to schedule
      * @return The scheduled {@link CarMaintenance}
      */
+    @Deprecated
     public CarMaintenance scheduleCarMaintenance(CarMaintenance event) {
         Customer customer = getCustomerMasterDataCommand.getCustomer(event.getCar());
         LocalDateTime customerCenterProposal = getAppointmentProposalsCommand.getCustomerAppointmentProposals(customer);
