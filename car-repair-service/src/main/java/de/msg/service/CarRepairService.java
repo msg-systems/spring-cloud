@@ -1,9 +1,8 @@
 package de.msg.service;
 
 import de.msg.model.*;
-import de.msg.presentation.web.command.GetAppointmentProposalsCommand;
-import de.msg.presentation.web.command.ScheduleAppointmentCommand;
 import de.msg.repository.MaintenanceEventRepository;
+import de.msg.web.AppointmentServiceClient;
 import de.msg.web.DataCollectionServiceClient;
 import de.msg.web.MasterDataCustomerServiceClient;
 import de.msg.web.MasterDataServiceCenterServiceClient;
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.PagedResources;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -24,16 +22,13 @@ import java.util.Set;
 @SuppressWarnings("SpringJavaAutowiringInspection")
 public class CarRepairService {
     @Autowired
-    private GetAppointmentProposalsCommand getAppointmentProposalsCommand;
-    @Autowired
-    private ScheduleAppointmentCommand scheduleAppointmentCommand;
-
-    @Autowired
     private DataCollectionServiceClient dataCollectionServiceClient;
     @Autowired
     private MasterDataCustomerServiceClient masterDataCustomerServiceClient;
     @Autowired
     private MasterDataServiceCenterServiceClient masterDataServiceCenterServiceClient;
+    @Autowired
+    private AppointmentServiceClient appointmentServiceClient;
     @Autowired
     private MaintenanceEventRepository repository;
 
@@ -72,35 +67,27 @@ public class CarRepairService {
         Set<PagedResources<Customer>> pagedCustomers = masterDataCustomerServiceClient.findByCar(event.getCar());
         Collection<Customer> customers = parseEmbeddedJsonResponse(pagedCustomers);
         Customer customer = getFirstElement(customers);
+        if (customer == null) {
+            customer = new Customer(999, "TestUser", "TestUSer", event.getCar(), "test@email.com");
+        }
 
         Set<PagedResources<ServiceCenter>> pagedServiceCenter = masterDataServiceCenterServiceClient.findAll();
         Collection<ServiceCenter> serviceCenters = parseEmbeddedJsonResponse(pagedServiceCenter);
-        // Get master-data
-        // Get appointment proposals
-        // Schedule service center appointment
-        // Schedule customer appointment
-        return event;
-    }
+        // Select an appropriate service center. Verify car brand and customer location i.e. Do some more sophisticated selection
+        ServiceCenter serviceCenter = getFirstElement(serviceCenters);
 
-    /**
-     * Schedules a {@link CarMaintenance}.
-     *
-     * @param event The {@link CarMaintenance} to schedule
-     * @return The scheduled {@link CarMaintenance}
-     */
-    @Deprecated
-    public CarMaintenance scheduleCarMaintenance(CarMaintenance event, Customer customer) {
-        LocalDateTime customerCenterProposal = getAppointmentProposalsCommand.getCustomerAppointmentProposals(customer);
-        ServiceCenter serviceCenter = new ServiceCenter();
-        LocalDateTime serviceCenterProposal = getAppointmentProposalsCommand.getServiceCenterAppointmentProposals(serviceCenter);
-
-        if (serviceCenterProposal.equals(customerCenterProposal)) {
-            scheduleAppointmentCommand.scheduleServiceCenterAppointment(serviceCenter, serviceCenterProposal);
-            scheduleAppointmentCommand.scheduleCustomerAppointment(customer, customerCenterProposal);
-            // TODO RK event.setAppointment()
+        if (serviceCenter != null) {
+            long customerAppointment = appointmentServiceClient.scheduleAppointment(customer).getBody();
+            long serviceCenterAppointment = appointmentServiceClient.scheduleAppointment(serviceCenter).getBody();
+            if (customerAppointment == serviceCenterAppointment) {
+                Appointment appointment = new Appointment(customer, serviceCenter, customerAppointment);
+                appointmentServiceClient.scheduleAppointment(appointment);
+            } else {
+                throw new RuntimeException("Unable to schedule appointment");
+            }
+            return event;
         } else {
-            // TODO RK implement some logic here.
+            throw new RuntimeException("Unable to schedule appointment");
         }
-        return event;
     }
 }
