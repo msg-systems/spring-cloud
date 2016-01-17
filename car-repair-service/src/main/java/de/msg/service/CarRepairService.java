@@ -49,6 +49,14 @@ public class CarRepairService {
         return result;
     }
 
+    private static <T> T getFirstElement(Collection<T> collection) {
+        if (!collection.isEmpty()) {
+            return collection.iterator().next();
+        } else {
+            return null;
+        }
+    }
+
     /**
      * Schedules a {@link MaintenanceEvent}.
      *
@@ -72,14 +80,6 @@ public class CarRepairService {
         // Schedule service center appointment
         // Schedule customer appointment
         return event;
-    }
-
-    private <T> T getFirstElement(Collection<T> collection) {
-        if (!collection.isEmpty()) {
-            return collection.iterator().next();
-        } else {
-            return null;
-        }
     }
 
     /**
