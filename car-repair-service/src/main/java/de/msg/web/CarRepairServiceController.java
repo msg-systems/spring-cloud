@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * The {@link CarRepairController} tries to schedule an {@link MaintenanceEvent} for car maintenance and appointment
+ * The {@link CarRepairServiceController} tries to schedule an {@link MaintenanceEvent} for car maintenance and appointment
  * with a {@link Customer} and {@link ServiceCenter}.
  */
 @RestController
-public class CarRepairController {
+public class CarRepairServiceController {
     @SuppressWarnings("SpringJavaAutowiringInspection")
     @Autowired
     private CarRepairService service;
