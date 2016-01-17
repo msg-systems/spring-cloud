@@ -17,7 +17,7 @@ zuul:
       path: /maintenance/**
       serviceId: maintenance-service
     customer:
-      path: /customer/**
+      path: /master-data/**
       serviceId: master-data-service
     car:
       path: /car/**
