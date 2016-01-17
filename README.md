@@ -59,6 +59,16 @@ Put into your ${user.home}/.m2/settings.xml the correct configuration
 ### Set up MongoDB 
 * See [MongoDB documentation] (https://docs.mongodb.org/manual/installation/)
 
+### Set up MySQL 
+* See [MySQL documentation] (http://dev.mysql.com/doc/refman/5.7/en/installing.html)
+* Create database schemas
+** appointment
+** master-data
+* Create a new user
+** Username: spring-cloud
+** Password: password
+* Authenticate the spring-cloud user to access the database schemas
+
 ### Set up your favorite IDE
 * [IntelliJ IDEA] (https://www.jetbrains.com/idea/)
 * [NetBeans IDE] (https://netbeans.org/)
@@ -80,8 +90,6 @@ git clone https://github.com/Pirat83/spring-cloud.git
 ```
 ## Getting started
 Use the location where you cloned the repository i.e. {user.home}/workspace/spring-cloud to execute the following commands. 
-Important endpoint URLs: 
-data-collection-service: [http://localhost:8000/sensorValues](http://localhost:8000/sensorValues)
 ### Build all modules
 ```bash
 mvn clean install
@@ -95,49 +103,58 @@ to verify if your eureka-server has started correctly on port 8761 open with you
 ```bash
 java -jar data-collection-service/target/data-collection-service-0.0.1-SNAPSHOT.jar --server.port=8000
 ```
-generate some dummy data [The SensorEvent dummy data endpoint](http://localhost:8000/dummy-data). You should see some JSON objects. 
-verify [The SensorEvent endpoint: http://localhost:8000/sensorEvents](http://localhost:8000/sensorEvents). You should see some JSON objects. 
+verify [The data-collection-service endpoint:] (http://localhost:8000/)
 ### Start maintenance-service
 ```bash
 java -jar maintenance-service/target/maintenance-service-0.0.1-SNAPSHOT.jar --server.port=8010
 ```
-verify [The SensorEvent endpoint: http://localhost:8010/sensorEvents](http://localhost:8010/sensorEvents). You should see some JSON objects. 
-verify [The maintenance endpoint: http://localhost:8010/maintenanceEvents](http://localhost:8010/maintenanceEvents). You should see an error message, due no instance of car-repair-service is found yet.   
-
+verify [The maintenance-service endpoint:] (http://localhost:8010/) 
 ### Start car-repair-service
 ```bash
 java -jar car-repair-service/target/car-repair-service-0.0.1-SNAPSHOT.jar --server.port=8020
 ```
-verify [The car-repair endpoint: http://localhost:8020/](http://localhost:8020/). You should see an error message, due no instance of master-data-service is found yet.   
+verify [The car-repair-service endpoint:] (http://localhost:8020/) 
+
 ### Start master-data-service
 ```bash
 java -jar master-data-service/target/master-data-service-0.0.1-SNAPSHOT.jar --server.port=8030
 ```
-verify [The master-data endpoint: http://localhost:8030/car](http://localhost:8030/car). You should see an customer JSON object.     
+verify [The master-data-service endpoint:] (http://localhost:8030/)     
 ### Start appointment-service
 ```bash
 java -jar appointment-service/target/appointment-service-0.0.1-SNAPSHOT.jar --server.port=8040
 ```
-verify [The customer appointment endpoint: http://localhost:8040/customer](http://localhost:8040/customer). You should see an long value.     
-verify [The service-centerappointment endpoint: http://localhost:8040/service-center](http://localhost:8040/service-center). You should see an long value.
-
+verify [The appointment-service endpoint:] (http://localhost:8040)     
 ### Putting everything together
 Now you got everything running. Verify that all 5 running spring-cloud are running. [Eureka application inventory](http://localhost:8761/eureka/apps/) 
-
-So lets schedule an maintenance. Navigate to: [The maintenance endpoint: http://localhost:8010/](http://localhost:8010/) 
-You see an Error, due a bug. There is a missing ribbon dependency. This will be fixed soon. The maintenance-service should post a CarMaintenanceEvent to the car-repair-service. 
-Let's emulate this by navigating to [The car-repair endpoint: http://localhost:8020/](http://localhost:8020/). You see the CarMaintenanceEvent. 
-Use the location where you cloned the repository i.e. {user.home}/workspace/spring-cloud to execute the following commands. 
+### Start Zuul-Proxy
+```bash
+java -jar zuul-proxy/target/zuul-proxy-0.0.1-SNAPSHOT.jar
+```
+to verify if your zuul-proxy has started correctly on port 8080 access one service via the API endpoint [http://localhost:8080/api/sensor](http://localhost:8080/api/sensor). 
+### Putting everything together
+Now you got everything running. Verify that all 5 services are running. [Eureka application inventory](http://localhost:8761/eureka/apps/) 
+Let's generate some dummy data [The SensorEvent dummy data endpoint](http://localhost:8000/dummy-data). You should see some JSON objects. And that's all :-)
+### Hystrix Dashboard
+For now Hystrix streams are not aggregated by turbine aggregator. 
 
 ###Important endpoint URLs: 
 | Endpoint / Service      | URL                                                                          | Port range |
 |-------------------------|------------------------------------------------------------------------------|------------|
-| data-collection-service | [http://localhost:8000/sensorData](http://localhost:8000/sensorData)         | 8000-8009  | 
-| maintenance-service     | [http://localhost:8010](http://localhost:8010)                               | 8010-8019  |
-| car-repair-service      | [http://localhost:8020](http://localhost:8020)                               | 8020-8029  |
-| master-data-service     | [http://localhost:8030/car](http://localhost:8030/car)                       | 8030-8039  |
-| appointment-service     | [http://localhost:8040/customer](http://localhost:8040/customer)             | 8040-8049  |
-| appointment-service     | [http://localhost:8040/service-center](http://localhost:8040/service-center) | 8040-8049  |
+| Eureka Dashboard        | http://localhost:8761/                                                       | 8761-8761  |
+| Hystrix Dashboard       | http://localhost:9000/                                                       | 9000-9000  |
+| data-collection-service | http://localhost:8000/sensorValues                                           | 8000-8009  | 
+| maintenance-service     | http://localhost:8010/sensorValues                                           | 8010-8019  | 
+| maintenance-service     | http://localhost:8010/maintenanceEvents                                      | 8010-8019  |
+| car-repair-service      | http://localhost:8020/customers                                              | 8020-8029  |
+| car-repair-service      | http://localhost:8020/sensorEvents                                           | 8020-8029  |
+| car-repair-service      | http://localhost:8020/serviceCenters                                         | 8020-8029  |
+| car-repair-service      | http://localhost:8020/maintenanceEvents                                      | 8020-8029  |
+| master-data-service     | http://localhost:8030/serviceCenters                                         | 8030-8039  |
+| master-data-service     | http://localhost:8030/customers                                              | 8030-8039  |
+| appointment-service     | http://localhost:8040/serviceCenters                                         | 8040-8049  |
+| appointment-service     | http://localhost:8040/customers                                              | 8040-8049  |
+| appointment-service     | http://localhost:8040/appointments                                           | 8040-8049  |
 
 In a local development environment you are limited to only one machine. So you have to share all resources. On modern hardware CPU, Memory, I/O are available to abound. 
     However you have to share the ports of your network adapter. For this reason you have to start every module with the --server.port parameter. You can start i.e 10 instances of the data-collection-service
@@ -158,62 +175,23 @@ On the target platform every service will get its own virtual machine environmen
 Using Spring profiles is not advisable. In this case you would hard code the port in the spring configuration. This approach would interfere dynamic auto scaling. 
 And putting hard coded configuration in the built artifact is really, really bad practice - not even in cloud-native environments.  
 
-### Build all modules
-```bash
-mvn clean install
-```
-### Start Eureka-Server 
-```bash
-java -jar eureka-server/target/eureka-server-0.0.1-SNAPSHOT.jar
-```
-to verify if your eureka-server has started correctly on port 8761 open with your browser [The Eureka Dashboard](http://localhost:8761/). 
-### Start data-collection-service
-```bash
-java -jar data-collection-service/target/data-collection-service-0.0.1-SNAPSHOT.jar --server.port=8000
-```
-verify [The SensorData endpoint: http://localhost:8000/sensorData](http://localhost:8000/sensorData). You should see some JSON objects. 
-### Start maintenance-service
-```bash
-java -jar maintenance-service/target/maintenance-service-0.0.1-SNAPSHOT.jar --server.port=8010
-```
-verify [The maintenance endpoint: http://localhost:8010/](http://localhost:8010/). You should see an error message, due no instance of car-repair-service is found yet.   
-### Start car-repair-service
-```bash
-java -jar car-repair-service/target/car-repair-service-0.0.1-SNAPSHOT.jar --server.port=8020
-```
-verify [The car-repair endpoint: http://localhost:8020/](http://localhost:8020/). You should see an error message, due no instance of master-data-service is found yet.   
-### Start master-data-service
-```bash
-java -jar master-data-service/target/master-data-service-0.0.1-SNAPSHOT.jar --server.port=8030
-```
-verify [The master-data endpoint: http://localhost:8030/car](http://localhost:8030/car). You should see an customer JSON object.     
-### Start appointment-service
-```bash
-java -jar appointment-service/target/appointment-service-0.0.1-SNAPSHOT.jar --server.port=8040
-```
-verify [The customer appointment endpoint: http://localhost:8040/customer](http://localhost:8040/customer). You should see an long value.     
-verify [The service-centerappointment endpoint: http://localhost:8040/service-center](http://localhost:8040/service-center). You should see an long value.
-
-### Start Zuul-Proxy
-```bash
-java -jar zuul-proxy/target/zuul-proxy-0.0.1-SNAPSHOT.jar
-```
-to verify if your zuul-proxy has started correctly on port 8080 access one service via the API endpoint [http://localhost:8080/api/sensor](http://localhost:8080/api/sensor). 
-
-### Putting everything together
-Now you got everything running. Verify that all 5 services are running. [Eureka application inventory](http://localhost:8761/eureka/apps/) 
-
-So lets schedule an maintenance. Navigate to: [The maintenance endpoint: http://localhost:8010/](http://localhost:8010/) 
-You see an Error, due a bug. There is a missing ribbon dependency. This will be fixed soon. The maintenance-service should post a CarMaintenanceEvent to the car-repair-service. 
-Let's emulate this by navigating to [The car-repair endpoint: http://localhost:8020/](http://localhost:8020/). You see the CarMaintenanceEvent. 
+###Important Zuul proxy URLs: 
+| Endpoint / Service      | URL                                                                          | Port       |
+|-------------------------|------------------------------------------------------------------------------|------------|
+| data-collection-service | http://localhost:8080/api/sensor                                             | 8080       | 
+| maintenance-service     | http://localhost:8080/api/maintenance                                        | 8080       | 
+| car-repair-service      | http://localhost:8080/api/car                                                | 8080       |
+| master-data-service     | http://localhost:8080/api/master-data                                        | 8080       |
+| appointment-service     | http://localhost:8080/api/appointment                                        | 8080       |
+Every external request should be routed through the Zuul proxy. 
 
 ## Useful links: 
 * [How to set up environment variables in Linux, Unix, Mac and Windows environments](http://www.tutorialspoint.com/maven/maven_environment_setup.htm)
 * [How to set up a Maven HTTP / HTTPS proxy] (https://maven.apache.org/guides/mini/guide-proxies.html) 
-* [Spring engineering blog about microservices] (https://spring.io/blog/2015/07/14/microservices-with-spring)
+* [Spring engineering blog about micro services] (https://spring.io/blog/2015/07/14/microservices-with-spring)
 * [Overview of cloud native applications with spring-cloud] (http://projects.spring.io/spring-cloud/spring-cloud.html)
-* [Very interesting overview of spring-cloud components by Kenny Bastani] http://www.kennybastani.com/2015/07/spring-cloud-docker-microservices.html
+* [Very interesting overview of spring-cloud components by Kenny Bastani](http://www.kennybastani.com/2015/07/spring-cloud-docker-microservices.html)
 * [Simple overview of spring-cloud components] (http://de.slideshare.net/mstine/dist-sys-wspringclouddeckset)
 * [Overview of spring-cloud-netflix components](http://cloud.spring.io/spring-cloud-netflix/spring-cloud-netflix.html)
-* [http://callistaenterprise.se/blogg/teknik/2015/05/20/blog-series-building-microservices/] (Magnus Larson's Blog Series - Building Microservices)
-* (Configuration of Hystrix) [https://github.com/Netflix/Hystrix/wiki/Configuration]
+* [Magnus Larson's Blog Series - building micro services](http://callistaenterprise.se/blogg/teknik/2015/05/20/blog-series-building-microservices/)
+* [Configuration of Hystrix]([https://github.com/Netflix/Hystrix/wiki/Configuration)
