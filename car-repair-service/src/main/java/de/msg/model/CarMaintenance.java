@@ -1,5 +1,6 @@
-package de.msg.domain.carmaintanance;
+package de.msg.model;
 
+@Deprecated
 public class CarMaintenance 
 {
 	

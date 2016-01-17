@@ -1,15 +1,18 @@
 package de.msg;
 
+import de.msg.model.Customer;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.feign.EnableFeignClients;
 
 /**
  * A simple {@link SpringBootApplication} bootstraps Spring's {@link org.springframework.context.ApplicationContext}.
- * The {@link MasterDataApplication} provides master-data for i.e {@link de.msg.domain.customer.Customer}.
+ * The {@link MasterDataApplication} provides master-data for i.e {@link Customer}.
  */
 @SpringBootApplication
 @EnableEurekaClient
+@EnableFeignClients
 public class MasterDataApplication {
 
     /**

@@ -2,6 +2,8 @@ package de.msg;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import de.msg.model.Customer;
+import de.msg.model.ServiceCenter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -13,7 +15,7 @@ import org.springframework.hateoas.hal.Jackson2HalModule;
 /**
  * A simple {@link SpringBootApplication} bootstraps Spring's {@link org.springframework.context.ApplicationContext}.
  * The {@link CarRepairApplication} fetches appointment proposals from appointment-service and tries to schedule
- * an appointment for an {@link de.msg.domain.customer.Customer} in an {@link de.msg.domain.servicecenter.ServiceCenter} for car maintenance.
+ * an appointment for an {@link Customer} in an {@link ServiceCenter} for car maintenance.
  */
 @SpringBootApplication
 @EnableEurekaClient

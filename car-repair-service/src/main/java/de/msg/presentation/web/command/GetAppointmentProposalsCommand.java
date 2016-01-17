@@ -1,10 +1,8 @@
 package de.msg.presentation.web.command;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-
-import de.msg.domain.customer.Customer;
-import de.msg.domain.servicecenter.ServiceCenter;
-
+import de.msg.model.Customer;
+import de.msg.model.ServiceCenter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
