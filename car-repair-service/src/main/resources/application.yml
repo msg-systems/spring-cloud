@@ -15,7 +15,3 @@ spring:
     database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
       ddl-auto: update
-
-logging:
-  level:
-    root: DEBUG
