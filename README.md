@@ -194,4 +194,4 @@ Every external request should be routed through the Zuul proxy.
 * [Simple overview of spring-cloud components] (http://de.slideshare.net/mstine/dist-sys-wspringclouddeckset)
 * [Overview of spring-cloud-netflix components](http://cloud.spring.io/spring-cloud-netflix/spring-cloud-netflix.html)
 * [Magnus Larson's Blog Series - building micro services](http://callistaenterprise.se/blogg/teknik/2015/05/20/blog-series-building-microservices/)
-* [Configuration of Hystrix]([https://github.com/Netflix/Hystrix/wiki/Configuration)
+* [Configuration of Hystrix](https://github.com/Netflix/Hystrix/wiki/Configuration)
