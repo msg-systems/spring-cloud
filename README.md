@@ -1,4 +1,6 @@
 # spring-cloud
+## Functional view
+[Funtional view]: https://github.com/msg-systems/spring-cloud/blob/master/functional_view.png "The functional view of the project"
 ## Prerequisites
 ### Set up Java8 JDK
 * Set up Java developer kit (JDK) not Java runtime environment (JRE)
