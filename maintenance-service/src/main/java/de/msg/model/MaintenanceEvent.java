@@ -30,6 +30,8 @@ public class MaintenanceEvent {
     private String sensorName;
     @NotNull
     private String sensorValueThreshold;
+    @NotNull
+    private Customer customer;
     private Set<SensorEvent> sensorEvents = new HashSet<>();
 
     /**

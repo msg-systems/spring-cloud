@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.time.LocalDateTime;
 
 /**
- * {@link FeignClient} communicating with <tt>master-data-appointment-service</tt>.
+ * {@link FeignClient} communicating with <tt>appointment-service</tt>.
  */
 @FeignClient(value = "appointment-service")
 public interface AppointmentServiceClient {

@@ -1,6 +1,8 @@
 package de.msg.web;
 
-import de.msg.model.MaintenanceEvent;
+import de.msg.model.Appointment;
+import de.msg.model.Customer;
+import de.msg.model.ServiceCenter;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @FeignClient(value = "car-repair-service")
 public interface CarRepairServiceClient {
     /**
-     * Schedules an {@link MaintenanceEvent}
+     * Schedules an {@link Appointment}
      *
-     * @param maintenanceEvent The {@link MaintenanceEvent} to schedule.
-     * @return The scheduled {@link MaintenanceEvent}.
+     * @param appointment The {@link Appointment} for.
+     * @return The scheduled{@link Appointment}
      */
-    @RequestMapping(method = RequestMethod.POST, value = "/maintenanceEvents/schedule", consumes = "application/x-spring-data-compact+json")
-    ResponseEntity<MaintenanceEvent> scheduleMaintenanceEvent(@RequestBody MaintenanceEvent maintenanceEvent);
+    @RequestMapping(method = RequestMethod.POST, value = "/appointments/", consumes = "application/x-spring-data-compact+json")
+    ResponseEntity<Appointment> scheduleAppointment(@RequestBody Appointment appointment);
 }

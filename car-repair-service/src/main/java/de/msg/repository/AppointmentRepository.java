@@ -1,12 +1,12 @@
 package de.msg.repository;
 
-import de.msg.model.Customer;
+import de.msg.model.Appointment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 /**
- * An simple {@link JpaRepository} to persist {@link Customer} data.
+ * An simple {@link JpaRepository} to persist {@link Appointment} data.
  */
 @RepositoryRestResource
-public interface CustomerRepository extends JpaRepository<Customer, Long> {
+public interface AppointmentRepository extends JpaRepository<Appointment, Long> {
 }

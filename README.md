@@ -143,17 +143,14 @@ For now Hystrix streams are not aggregated by turbine aggregator.
 |-------------------------|------------------------------------------------------------------------------|------------|
 | Eureka Dashboard        | http://localhost:8761/                                                       | 8761-8761  |
 | Hystrix Dashboard       | http://localhost:9000/                                                       | 9000-9000  |
-| data-collection-service | http://localhost:8000/sensorValues                                           | 8000-8009  | 
-| maintenance-service     | http://localhost:8010/sensorValues                                           | 8010-8019  | 
+| data-collection-service | http://localhost:8000/sensorEvents                                           | 8000-8009  | 
 | maintenance-service     | http://localhost:8010/maintenanceEvents                                      | 8010-8019  |
-| car-repair-service      | http://localhost:8020/customers                                              | 8020-8029  |
-| car-repair-service      | http://localhost:8020/sensorEvents                                           | 8020-8029  |
-| car-repair-service      | http://localhost:8020/serviceCenters                                         | 8020-8029  |
-| car-repair-service      | http://localhost:8020/maintenanceEvents                                      | 8020-8029  |
+| car-repair-service      | http://localhost:8020//appointments                                          | 8020-8029  |
 | master-data-service     | http://localhost:8030/serviceCenters                                         | 8030-8039  |
 | master-data-service     | http://localhost:8030/customers                                              | 8030-8039  |
-| appointment-service     | http://localhost:8040/serviceCenters                                         | 8040-8049  |
-| appointment-service     | http://localhost:8040/customers                                              | 8040-8049  |
+| appointment-service     | http://localhost:8040//maintenanceEvents/schedule                            | 8040-8049  |
+| appointment-service     | http://localhost:8040//serviceCenters/schedule                               | 8040-8049  |
+| appointment-service     | http://localhost:8040//customers/schedule                                    | 8040-8049  |
 | appointment-service     | http://localhost:8040/appointments                                           | 8040-8049  |
 
 In a local development environment you are limited to only one machine. So you have to share all resources. On modern hardware CPU, Memory, I/O are available to abound. 
